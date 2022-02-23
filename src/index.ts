@@ -4,8 +4,12 @@ export interface IGotDriver {
 
   BaseUrl: string;
   
-  getWithResponse: (path: string) => Promise<PlainResponse>;
+  getWithJsonResponse: (path: string) => Promise<PlainResponse>;
 
-  postWithResponse: (path: string, body: string) => Promise<PlainResponse>;
+  postWithJsonResponseAndJsonBody: (path: string, body: string) => Promise<PlainResponse>;
+
+  putWithJsonResponseAndJsonBody: (path: string, body: string) => Promise<PlainResponse>;
+
+  deleteWithJsonResponse: (path: string) => Promise<PlainResponse>;
 
 }

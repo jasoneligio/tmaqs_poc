@@ -13,23 +13,48 @@ export default class GotDriver implements IGotDriver {
         return this.baseUrl;
     }
 
-    getWithResponse = async (path: string): Promise<PlainResponse> => {
+    getWithJsonResponse = async (path: string): Promise<PlainResponse> => {
         return await got.get(
             `${this.baseUrl}${path}`, 
             {
                 responseType: 'json', 
-                resolveBodyOnly: false
+                resolveBodyOnly: false,
+                encoding: 'utf8'
             }
         );
     };
 
-    postWithResponse = async (path: string, body: string): Promise<PlainResponse> => {
+    postWithJsonResponseAndJsonBody = async (path: string, body: string): Promise<PlainResponse> => {
         return await got.post(
             `${this.baseUrl}${path}`, 
             {
                 json: JSON.parse(body),
                 responseType: 'json', 
-                resolveBodyOnly: false 
+                resolveBodyOnly: false,
+                encoding: 'utf8'
+            }
+        );
+    };
+
+    putWithJsonResponseAndJsonBody = async (path: string, body: string): Promise<PlainResponse> => {
+        return await got.put(
+            `${this.baseUrl}${path}`, 
+            {
+                json: JSON.parse(body),
+                responseType: 'json', 
+                resolveBodyOnly: false,
+                encoding: 'utf8'
+            }
+        );
+    };
+
+    deleteWithJsonResponse = async (path: string): Promise<PlainResponse> => {
+        return await got.delete(
+            `${this.baseUrl}${path}`, 
+            {
+                responseType: 'json', 
+                resolveBodyOnly: false,
+                encoding: 'utf8'
             }
         );
     };

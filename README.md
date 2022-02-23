@@ -1,4 +1,4 @@
 # tmaqs_poc
-# Build: npx tsc
-# Run: node ****.js
+# Command to execute:
+# npm i --save-dev
 # npm test run
