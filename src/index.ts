@@ -2,8 +2,10 @@ import { PlainResponse } from 'got';
 
 export interface IGotDriver {
 
-  getWithJsonResponseObject: (path: string) => Promise<PlainResponse>;
+  BaseUrl: string;
   
-  getWithJsonResponseBody: (path: string) => Promise<PlainResponse>;
+  getWithResponse: (path: string) => Promise<PlainResponse>;
+
+  postWithResponse: (path: string, body: string) => Promise<PlainResponse>;
 
 }

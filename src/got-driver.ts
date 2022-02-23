@@ -3,12 +3,35 @@ import { IGotDriver } from '../src/';
 
 export default class GotDriver implements IGotDriver {
 
-    getWithJsonResponseObject = async (path: string): Promise<PlainResponse> => {
-        return await got.get(path, {responseType: 'json', resolveBodyOnly: false});
+    baseUrl: string = '';
+
+    public set BaseUrl(baseUrl: string) {
+        this.baseUrl = baseUrl;
+    }
+    
+    public get BaseUrl() {
+        return this.baseUrl;
+    }
+
+    getWithResponse = async (path: string): Promise<PlainResponse> => {
+        return await got.get(
+            `${this.baseUrl}${path}`, 
+            {
+                responseType: 'json', 
+                resolveBodyOnly: false
+            }
+        );
     };
 
-    getWithJsonResponseBody = async (path: string): Promise<PlainResponse> => {
-        return await got.get(path, {responseType: 'json', resolveBodyOnly: true});
+    postWithResponse = async (path: string, body: string): Promise<PlainResponse> => {
+        return await got.post(
+            `${this.baseUrl}${path}`, 
+            {
+                json: JSON.parse(body),
+                responseType: 'json', 
+                resolveBodyOnly: false 
+            }
+        );
     };
 
 }
