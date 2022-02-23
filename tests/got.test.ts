@@ -1,7 +1,7 @@
 import GotDriver from '../src/got-driver';
 import { IGotDriver } from '../src';
-import jsonBody from '../tests/postBody.json'
-import { IEmployee } from '../tests/postBody'
+import employeeJson from '../tests/Employee.json'
+import { IEmployee } from './IEmployee'
 
 describe('GOT Tests', () => {
 
@@ -28,14 +28,14 @@ describe('GOT Tests', () => {
     });
 
     it("Post Request - Return 201 Response", async () => {
-        let response = await gotDriver.postWithJsonResponseAndJsonBody(magenicAutomationApiPost, JSON.stringify(jsonBody));
+        let response = await gotDriver.postWithJsonResponseAndJsonBody(magenicAutomationApiPost, JSON.stringify(employeeJson));
         expect(response.statusCode).toEqual(201);
     });
 
     it("Put Request - Return 204 Response", async () => {
-        let data = await gotDriver.postWithJsonResponseAndJsonBody(magenicAutomationApiPost, JSON.stringify(jsonBody));
+        let data = await gotDriver.postWithJsonResponseAndJsonBody(magenicAutomationApiPost, JSON.stringify(employeeJson));
         let employee: IEmployee = <IEmployee>data.body;
-        let body: IEmployee = <IEmployee>jsonBody;
+        let body: IEmployee = <IEmployee>employeeJson;
         body.EmployeeID = employee.EmployeeID;
         body.EmpFirstName = "Jason Joseph"
         let response = await gotDriver.putWithJsonResponseAndJsonBody(`${magenicAutomationApiPut}${employee.EmployeeID.toString()}`, JSON.stringify(body));
@@ -43,7 +43,7 @@ describe('GOT Tests', () => {
     });
 
     it("Delete Request - Return 200 Response", async () => {
-        let data = await gotDriver.postWithJsonResponseAndJsonBody(magenicAutomationApiPost, JSON.stringify(jsonBody));
+        let data = await gotDriver.postWithJsonResponseAndJsonBody(magenicAutomationApiPost, JSON.stringify(employeeJson));
         let employee: IEmployee = <IEmployee>data.body;
         let response = await gotDriver.deleteWithJsonResponse(`${magenicAutomationApiDelete}${employee.EmployeeID.toString()}`);
         expect(response.statusCode).toEqual(200);
