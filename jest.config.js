@@ -2,7 +2,7 @@
  * For a detailed explanation regarding each configuration property, visit:
  * https://jestjs.io/docs/configuration
  */
-/** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
+
 module.exports = {
   // All imported modules in your tests should be mocked automatically
   // automock: false,
@@ -63,7 +63,6 @@ module.exports = {
   globals: {
     'ts-jest': {
       isolatedModules: false,
-      useESM: true
     },
   },
 
@@ -71,31 +70,20 @@ module.exports = {
   // maxWorkers: "50%",
 
   // An array of directory names to be searched recursively up from the requiring module's location
-  moduleDirectories: ['dist', 'src', 'node_modules'],
+  //moduleDirectories: ['js', '.', 'node_modules'],
 
   // An array of file extensions your modules use
-  moduleFileExtensions: [
-    "js",
-    "d.js",
-    "jsx",
-    "ts",
-    "d.ts",
-    "tsx",
-    "json",
-    "node"
-  ],
-
-  // An array of file extensions your modules use to treat as ESM
-  extensionsToTreatAsEsm: [
-    ".d.js",
-    ".jsx",
-    ".ts",
-    ".d.ts",
-    ".tsx"
-  ],
+  // moduleFileExtensions: [
+  //   "js",
+  //   "jsx",
+  //   "ts",
+  //   "tsx",
+  //   "json",
+  //   "node"
+  // ],
 
   // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
-  // moduleNameMapper: {},
+  moduleNameMapper: {},
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
   // modulePathIgnorePatterns: [],
@@ -128,12 +116,12 @@ module.exports = {
   // restoreMocks: false,
 
   // The root directory that Jest should scan for tests and modules within
-  rootDir: "./",
+  // rootDir: undefined,
 
   // A list of paths to directories that Jest should use to search for files in
-  roots: [
-    "<rootDir>"
-  ],
+  // roots: [
+  //   "<rootDir>"
+  // ],
 
   // Allows you to use a custom runner instead of Jest's default test runner
   //runner: 'jest-runner',
@@ -142,7 +130,7 @@ module.exports = {
   // setupFiles: ['./tmaqs-ui.setup.ts'],
 
   // A list of paths to modules that run some code to configure or set up the testing framework before each test
-  setupFilesAfterEnv: ['./jest.setup.cjs'],
+  setupFilesAfterEnv: ['./jest.setup.js'],
 
   // The number of seconds after which a test is considered as slow and reported as such in the results.
   // slowTestThreshold: 5,
@@ -151,9 +139,8 @@ module.exports = {
   // snapshotSerializers: [],
 
   // The test environment that will be used for testing
-  // testEnvironment: 'jest-environment-node',
+  //testEnvironment: 'jest-environment-node',
   testEnvironment: 'node',
-  // testEnvironment: 'jsdom',
 
   // Options that will be passed to the testEnvironment
   // testEnvironmentOptions: {},
@@ -188,15 +175,15 @@ module.exports = {
   // timers: "real",
 
   // A map from regular expressions to paths to transformers
-  // transform: {
-  //   '^.+\\.[t|j]sx?$': 'babel-jest',
-  // },
-  transform: {},
+  transform: {
+    '^.+\\.jsx?$': 'babel-jest',
+  },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
-  transformIgnorePatterns: [
-    "\\\\node_modules\\\\"
-  ],
+  // transformIgnorePatterns: [
+  //   "\\\\node_modules\\\\",
+  //   "\\.pnp\\.[^\\\\]+$"
+  // ],
 
   // An array of regexp pattern strings that are matched against all modules before the module loader will automatically return a mock for them
   // unmockedModulePathPatterns: undefined,
